@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.9'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.ms'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.amazonaws:aws-java-sdk-core:$amazonawsVersion"
+    implementation "com.amazonaws:aws-java-sdk-kms:$amazonawsVersion"
+    implementation "io.github.boostchicken:spring-data-dynamodb:5.2.5"
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Cloud config
+    implementation "org.springframework.cloud:spring-cloud-starter-config:$springCloudConfigVersion"
+    implementation "org.springframework.cloud:spring-cloud-starter-bootstrap:$springCloudConfigVersion"
+    implementation 'org.zalando:spring-cloud-config-aws-kms:5.1.2'
+
+
+    // Swagger
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+    // Feign
+    implementation 'io.github.openfeign:feign-soap:12.2'
+    implementation 'io.github.openfeign:feign-httpclient:12.2'
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudConfigVersion"
+
+    // Json
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.named("jar") {
+    enabled = false
+}
